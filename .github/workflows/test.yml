@@ -1,0 +1,27 @@
+name: test
+
+on: [push]
+
+jobs:
+    Run_test:
+        name: Test elemantary dualNumber forwardAD
+        runs-on: ubuntu-latest
+        steps:
+            #checkout the head of branch
+            - uses: actions/checkout@v3
+            - uses: actions/setup-python@v3
+              with:
+                  python-version: "3.9"
+            - name: Install Python dependencies
+              run: |
+                  python -m pip install --upgrade pip
+                  pip install numpy
+                  pip install pytest
+            - name: Run tests
+              run: pytest ./tests/
+            #- name: Run tests
+            #run: |
+            #cd tests/test_
+            #pytest -n auto test_dualNumber.py
+            #pytest -n auto test_elementary.py
+            #pytest -n auto test_forwardAD.py
